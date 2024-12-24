@@ -10,6 +10,6 @@ Auto-Loop after Max (50/100)
 
 Auto-Multi Ready
 
-Auto-Battle Host
+Auto-Battle Host (only works on full party 4/4 players)
 
 Auto-Reroll (maybe idk)
