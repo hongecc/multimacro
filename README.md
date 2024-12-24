@@ -1,6 +1,6 @@
 # GS Macro
 
-Do not that macroing in GS is bannable. Use at you own risk.
+Do note that macroing in GS is bannable. Use at you own risk.
 
 Functions Available:
 
