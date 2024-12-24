@@ -1,4 +1,4 @@
-# Grand Summoners Macro
+# GS Macro
 
 Do not that macroing in GS is bannable. Use at you own risk.
 
