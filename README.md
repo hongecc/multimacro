@@ -13,3 +13,6 @@ Auto-Multi Ready
 Auto-Battle Host (only works on full party 4/4 players)
 
 Auto-Reroll (maybe idk)
+
+
+# In order for the script to work firstly, "Show Tips" must be turned off.
