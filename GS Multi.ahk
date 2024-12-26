@@ -4,8 +4,7 @@ isRunning := false
 isPaused := false
 foodClicked := false
 mode := ""
-pots := 0
-rounds := 0
+rounds := 000
 
 ; Create the mode selection GUI
 Modes() {
@@ -125,13 +124,31 @@ NonHostModeFunction() {
 
     if (!condition3 && condition2) {
         GuiControl, Status:, StatusText, Status: ready
-        Mousemove 935, 980
-        Sleep, 500
-        Click 935, 980
-        Sleep, 1000 ; Wait for 1 second to simulate the click delay
-        condition3 := True
+        PixelSearch, foundX, foundY, 847, 961, 1042, 1016, 0x050600, 0, Fast RGB
+        if (ErrorLevel = 0) {
+            GuiControl, Status:, StatusText, Status: waitingforresult
+            Mousemove, foundX, foundY
+            Click
+            Sleep, 100
+            condition3 := True
         }
-
+        PixelSearch, foundX, foundY, 847, 961, 1042, 1016, 0x9E7E4E, 0, Fast RGB
+        if (ErrorLevel = 0) {
+            GuiControl, Status:, StatusText, Status: waitingforresult
+            Mousemove, foundX, foundY
+            Click
+            Sleep, 100
+            condition3 := True
+        }
+        PixelSearch, foundX, foundY, 847, 961, 1042, 1016, 0xFF581F, 0, Fast RGB
+        if (ErrorLevel = 0) {
+            GuiControl, Status:, StatusText, Status: waitingforresult
+            Mousemove, foundX, foundY
+            Click
+            Sleep, 100
+            condition3 := True
+        }
+    }
     if (!condition4) {
         PixelGetColor, color, 934,221, RGB
         if (color = 0xA4A6A4) {
