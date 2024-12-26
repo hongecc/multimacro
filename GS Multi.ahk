@@ -1,4 +1,3 @@
-
 ; Initialize variables
 isRunning := false
 isPaused := false
@@ -117,8 +116,6 @@ NonHostModeFunction() {
         GuiControl, Status:, StatusText, Status: food
         Click 718, 810
         Sleep, 500
-        Click 935, 980
-        Sleep, 1000 ; Wait for 1 second to simulate the click delay
         condition2 := True
     }
 
