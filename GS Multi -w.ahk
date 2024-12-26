@@ -178,6 +178,8 @@ NonHostModeFunction() {
                     Click
                     Sleep, 100
                     condition3 := False
+                    rounds++
+                    GuiControl, Status:, Rounds, Status: %rounds%
                     break
                 }
             }
