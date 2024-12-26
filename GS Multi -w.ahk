@@ -97,8 +97,7 @@ return
 condition1 := False
 condition2 := False
 condition3 := False
-condition4 := False
-
+condition4 := True
 
 NonHostModeFunction() { 
     global
@@ -128,6 +127,7 @@ NonHostModeFunction() {
             Click 935, 991
             Sleep, 100
             condition3 := True
+            condition4 := False
             }
         }
     if (!condition4) {
@@ -144,6 +144,7 @@ NonHostModeFunction() {
                     Click 939, 834
                     Sleep, 100
                     condition3 := False
+                    condition4 := True
                     break
                 }
             }
