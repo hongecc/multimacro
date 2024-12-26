@@ -156,8 +156,7 @@ NonHostModeFunction() {
                 PixelGetColor, color, 935, 864, RGB
                 if (color = 0xBC5C14) {
                     GuiControl, Status:, StatusText, Status: untilnext
-                    Mousemove, 935, 864
-                    Click
+                    Click 935, 864
                     Sleep, 100
                     condition4 := True
                     break
