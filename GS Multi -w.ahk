@@ -124,27 +124,10 @@ NonHostModeFunction() {
         PixelSearch, foundX, foundY, 847, 961, 1042, 1016, 0x050600, 0, Fast RGB
         if (ErrorLevel = 0) {
             GuiControl, Status:, StatusText, Status: waitingforresult
-            Mousemove, foundX, foundY
-            Click
+            Sleep, 1500
+            Click 935, 991
             Sleep, 100
             condition3 := True
-        }
-        PixelSearch, foundX, foundY, 847, 961, 1042, 1016, 0x9E7E4E, 0, Fast RGB
-        if (ErrorLevel = 0) {
-            GuiControl, Status:, StatusText, Status: waitingforresult
-            Mousemove, foundX, foundY
-            Click
-            Sleep, 100
-            condition3 := True
-        }
-        PixelSearch, foundX, foundY, 847, 961, 1042, 1016, 0xFF581F, 0, Fast RGB
-        if (ErrorLevel = 0) {
-            GuiControl, Status:, StatusText, Status: waitingforresult
-            Mousemove, foundX, foundY
-            Click
-            Sleep, 100
-            condition3 := True
-        }
     }
     if (!condition4) {
         PixelGetColor, color, 934,221, RGB
@@ -156,31 +139,11 @@ NonHostModeFunction() {
                 PixelSearch, foundX, foundY, 877, 812, 1008, 851, 0x232623, 0, Fast RGB
                 if (ErrorLevel = 0) {
                     GuiControl, Status:, StatusText, Status: clicknext
-                    Mousemove, foundX, foundY
-                    Click
+                    Click 939, 834
                     Sleep, 100
                     condition3 := False
                     break
                 }
-                PixelSearch, foundX, foundY, 877, 812, 1008, 851, 0xFF6904, 0, Fast RGB
-                if (ErrorLevel = 0) {
-                    GuiControl, Status:, StatusText, Status: clicknext
-                    Mousemove, foundX, foundY
-                    Click
-                    Sleep, 100
-                    condition3 := False
-                    break
-                }
-                PixelSearch, foundX, foundY, 877, 812, 1008, 851, 0xF85100, 0, Fast RGB
-                if (ErrorLevel = 0) {
-                    GuiControl, Status:, StatusText, Status: clicknext
-                    Mousemove, foundX, foundY
-                    Click
-                    Sleep, 100
-                    condition3 := False
-                    rounds++
-                    GuiControl, Status:, Rounds, Status: %rounds%
-                    break
                 }
             }
         }
