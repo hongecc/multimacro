@@ -153,37 +153,13 @@ NonHostModeFunction() {
             Sleep, 3000
             Loop {
                 Click 943, 657
-                PixelSearch, foundX, foundY, 871, 849, 1013, 890, 0x0F0F0F, 0, Fast RGB
-                if (ErrorLevel = 0) {
-                    GuiControl, Status:, StatusText, Status: clicknext
+                PixelGetColor, color, 935, 864, RGB
+                if (color = 0xBC5C14) {
+                    GuiControl, Status:, StatusText, Status: untilnext
                     Mousemove, foundX, foundY
-                    Sleep, 1000
                     Click
-                    condition3 := False
-                    rounds++
-                    GuiControl, Status:, StatusText, Status: Rounds: %rounds%
-                    break
-                }
-                PixelSearch, foundX, foundY, 871, 849, 1013, 890, 0xFDFDFD, 0, Fast RGB
-                if (ErrorLevel = 0) {
-                    GuiControl, Status:, StatusText, Status: clicknext
-                    Mousemove, foundX, foundY
-                    Sleep, 1000
-                    Click
-                    condition3 := False
-                    rounds++
-                    GuiControl, Status:, StatusText, Status: Rounds: %rounds%
-                    break
-                }
-                PixelSearch, foundX, foundY, 871, 849, 1013, 890, 0x000000, 0, Fast RGB
-                if (ErrorLevel = 0) {
-                    GuiControl, Status:, StatusText, Status: clicknext
-                    Mousemove, foundX, foundY
-                    Sleep, 1000
-                    Click
-                    condition3 := False
-                    rounds++
-                    GuiControl, Status:, StatusText, Status: Rounds: %rounds%
+                    Sleep, 100
+                    condition4 := True
                     break
                 }
             }
