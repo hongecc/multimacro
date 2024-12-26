@@ -280,16 +280,8 @@ NonHostModeFunction() {
         }
     }   
 
-    ; Check for colors starting with 0x844###
-    PixelGetColor, colorCheck, 801, 837, RGB
-    if (colorCheck >= 0x844000 && colorCheck <= 0x844FFF && !condition2) {
-        GuiControl, Status:, StatusText, Status: Clicking on coordinates (718, 810)
-        Click 718, 810
-        Sleep, 1000 ; Wait for 1 second to simulate the click delay
-        condition2 := True ; Activate condition2 if the color is in the specified range
-    }
 
-    if (condition2 && !condition2) {
+    if (!condition2) {
         GuiControl, Status:, StatusText, Status: Clicking on coordinates (718, 810)
         Click 718, 810
         Sleep, 1000 ; Wait for 1 second to simulate the click delay
