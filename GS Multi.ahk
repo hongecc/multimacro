@@ -34,9 +34,9 @@ ShowMainGUI() {
     Gui, Main: +AlwaysOnTop +Owner
     Gui, Main: Add, Tab2, w400 h300, Control|Shortcuts
     Gui, Main: Tab, Control
-    Gui, Main: Add, Button, gStartScript w200 h50, Start
-    Gui, Main: Add, Button, gPauseScript w200 h50, Pause
-    Gui, Main: Add, Button, gStopScript w200 h50, Stop
+    Gui, Main: Add, Button, gStartScript w200 h50, Start(F1)
+    Gui, Main: Add, Button, gPauseScript w200 h50, Pause(F2)
+    Gui, Main: Add, Button, gStopScript w200 h50, Stop(F3)
     Gui, Main: Tab, Shortcuts
     Gui, Main: Add, Text,, F1 - Start
     Gui, Main: Add, Text,, F2 - Pause
@@ -114,16 +114,19 @@ NonHostModeFunction() {
             condition1 := True
         }
     }   
-
     if (!condition2) {
         GuiControl, Status:, StatusText, Status: food
         Click 718, 810
+        Sleep, 500
+        Click 935, 980
         Sleep, 1000 ; Wait for 1 second to simulate the click delay
         condition2 := True
     }
 
     if (!condition3 && condition2) {
         GuiControl, Status:, StatusText, Status: ready
+        Mousemove 935, 980
+        Sleep, 500
         Click 935, 980
         Sleep, 1000 ; Wait for 1 second to simulate the click delay
         condition3 := True
