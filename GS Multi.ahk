@@ -160,6 +160,8 @@ NonHostModeFunction() {
                     Click
                     Sleep, 100
                     condition3 := False
+                    rounds++
+                    GuiControl, Status:, StatusText, Status: Rounds: %rounds%
                     break
                 }
                 PixelSearch, foundX, foundY, 877, 812, 1008, 851, 0xFF6904, 0, Fast RGB
@@ -169,6 +171,8 @@ NonHostModeFunction() {
                     Click
                     Sleep, 100
                     condition3 := False
+                    rounds++
+                    GuiControl, Status:, StatusText, Status: Rounds: %rounds%
                     break
                 }
                 PixelSearch, foundX, foundY, 877, 812, 1008, 851, 0xF85100, 0, Fast RGB
@@ -178,6 +182,8 @@ NonHostModeFunction() {
                     Click
                     Sleep, 100
                     condition3 := False
+                    rounds++
+                    GuiControl, Status:, StatusText, Status: Rounds: %rounds%
                     break
                 }
             }
