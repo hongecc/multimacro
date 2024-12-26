@@ -124,14 +124,15 @@ NonHostModeFunction() {
         PixelSearch, foundX, foundY, 847, 961, 1042, 1016, 0x050600, 0, Fast RGB
         if (ErrorLevel = 0) {
             GuiControl, Status:, StatusText, Status: waitingforresult
-            Sleep, 1500
+            Sleep, 2000
             Click 935, 991
             Sleep, 100
             condition3 := True
-    }
+            }
+        }
     if (!condition4) {
-        PixelGetColor, color, 934,221, RGB
-        if (color = 0xA4A6A4) {
+        PixelGetColor, color, 947, 218, RGB
+        if (color = 0xD7D7D7) {
             GuiControl, Status:, StatusText, Status: untilnext
             Sleep, 3000
             Loop {
@@ -144,11 +145,11 @@ NonHostModeFunction() {
                     condition3 := False
                     break
                 }
-                }
             }
         }
     }
 }
+
 
 
 
