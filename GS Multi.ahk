@@ -157,8 +157,8 @@ NonHostModeFunction() {
                 if (ErrorLevel = 0) {
                     GuiControl, Status:, StatusText, Status: clicknext
                     Mousemove, foundX, foundY
+                    Sleep, 1000
                     Click
-                    Sleep, 100
                     condition3 := False
                     rounds++
                     GuiControl, Status:, StatusText, Status: Rounds: %rounds%
@@ -168,8 +168,8 @@ NonHostModeFunction() {
                 if (ErrorLevel = 0) {
                     GuiControl, Status:, StatusText, Status: clicknext
                     Mousemove, foundX, foundY
+                    Sleep, 1000
                     Click
-                    Sleep, 100
                     condition3 := False
                     rounds++
                     GuiControl, Status:, StatusText, Status: Rounds: %rounds%
@@ -179,8 +179,8 @@ NonHostModeFunction() {
                 if (ErrorLevel = 0) {
                     GuiControl, Status:, StatusText, Status: clicknext
                     Mousemove, foundX, foundY
+                    Sleep, 1000
                     Click
-                    Sleep, 100
                     condition3 := False
                     rounds++
                     GuiControl, Status:, StatusText, Status: Rounds: %rounds%
