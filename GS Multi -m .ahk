@@ -158,7 +158,7 @@ NonHostModeFunction() {
                     GuiControl, Status:, StatusText, Status: untilnext
                     Click 935, 864
                     Sleep, 100
-                    condition3 := True
+                    condition3 := False
                     break
                 }
             }
