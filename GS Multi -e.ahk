@@ -137,7 +137,7 @@ NonHostModeFunction() {
             GuiControl, Status:, StatusText, Status: untilnext
             Sleep, 3000
             Loop {
-                Click 943, 657
+                Click 872, 704
                 PixelGetColor, color, 943, 874, RGB
                 if (color = 0xCDCCCD) {
                     GuiControl, Status:, StatusText, Status: untilnext
