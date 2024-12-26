@@ -302,16 +302,16 @@ NonHostModeFunction() {
         PixelGetColor, color, 934,221, RGB
         if (color = 0xA4A6A4) {
             GuiControl, Status:, StatusText, Status: Clicking on coordinates (934, 221)
-            Mousemove, 943, 666
+            Mousemove, 943, 657
             Click
             Sleep, 1000
             Loop
                 {
                     Click
-                    PixelGetColor, color, 948, 832, RGB
-                    if (color = 0x212421) {
+                    PixelGetColor, color, 935, 822, RGB
+                    if (color = 0xADAF7A) {
                         GuiControl, Status:, StatusText, Status: Clicking on coordinates (948, 832)
-                        Mousemove, 948, 832
+                        Mousemove, 935, 822
                         Click
                         Sleep, 100
                         condition3 := False
