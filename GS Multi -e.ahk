@@ -132,8 +132,8 @@ NonHostModeFunction() {
         }
     }
     if (!condition4) {
-        PixelGetColor, color, 934,221, RGB
-        if (color = 0x000408) {
+        PixelGetColor, color, 928, 227, RGB
+        if (color = 0xDEDDDE) {
             GuiControl, Status:, StatusText, Status: untilnext
             Sleep, 3000
             Loop {
