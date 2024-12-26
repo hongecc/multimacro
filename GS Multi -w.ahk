@@ -140,6 +140,7 @@ NonHostModeFunction() {
                 PixelSearch, foundX, foundY, 877, 812, 1008, 851, 0x232623, 0, Fast RGB
                 if (ErrorLevel = 0) {
                     GuiControl, Status:, StatusText, Status: clicknext
+                    Sleep, 800
                     Click 939, 834
                     Sleep, 100
                     condition3 := False
