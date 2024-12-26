@@ -97,7 +97,7 @@ return
 condition1 := False
 condition2 := False
 condition3 := False
-condition4 := False
+condition4 := True
 
 
 NonHostModeFunction() { 
@@ -128,6 +128,7 @@ NonHostModeFunction() {
             Click 939, 1036
             Sleep, 100
             condition3 := True
+            condition4 := False
         }
     }
     if (!condition4) {
@@ -136,13 +137,14 @@ NonHostModeFunction() {
             GuiControl, Status:, StatusText, Status: untilnext
             Sleep, 3000
             Loop {
-                Click 943, 657
+                Click 958, 273
                 PixelGetColor, color, 935, 864, RGB
                 if (color = 0xBC5C14) {
                     GuiControl, Status:, StatusText, Status: untilnext
                     Click 935, 864
                     Sleep, 100
                     condition3 := False
+                    condition4 := True
                     break
                 }
             }
