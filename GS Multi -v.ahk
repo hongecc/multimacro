@@ -97,7 +97,7 @@ return
 condition1 := False
 condition2 := False
 condition3 := False
-condition4 := False
+condition4 := True
 
 
 NonHostModeFunction() { 
@@ -128,6 +128,7 @@ NonHostModeFunction() {
             Click  600, 700
             Sleep, 100
             condition3 := True
+            condition4 := False
         }
 
     }
@@ -145,6 +146,7 @@ NonHostModeFunction() {
                     Click
                     Sleep, 100
                     condition3 := False
+                    condition4 := True
                     break
                 }
                 PixelSearch, foundX, foundY, 615, 575, 705, 595, 0xE8550B, 0, Fast RGB
@@ -154,6 +156,7 @@ NonHostModeFunction() {
                     Click
                     Sleep, 100
                     condition3 := False
+                    condition4 := True
                     break
                 }
             }
