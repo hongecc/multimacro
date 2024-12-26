@@ -114,14 +114,14 @@ NonHostModeFunction() {
     }   
     if (!condition2) {
         GuiControl, Status:, StatusText, Status: food
-        Click 718, 810
+        Click 511, 581
         Sleep, 500
         condition2 := True
     }
 
     if (!condition3 && condition2) {
         GuiControl, Status:, StatusText, Status: ready
-        PixelSearch, foundX, foundY, 847, 961, 1042, 1016, 0x050600, 0, Fast RGB
+        PixelSearch, foundX, foundY, 600, 682, 732, 713, 0x080600, 0, Fast RGB
         if (ErrorLevel = 0) {
             GuiControl, Status:, StatusText, Status: waitingforresult
             Mousemove, foundX, foundY
@@ -129,7 +129,7 @@ NonHostModeFunction() {
             Sleep, 100
             condition3 := True
         }
-        PixelSearch, foundX, foundY, 847, 961, 1042, 1016, 0x9E7E4E, 0, Fast RGB
+        PixelSearch, foundX, foundY, 600, 682, 732, 713 0x66582F, 0, Fast RGB
         if (ErrorLevel = 0) {
             GuiControl, Status:, StatusText, Status: waitingforresult
             Mousemove, foundX, foundY
@@ -137,23 +137,16 @@ NonHostModeFunction() {
             Sleep, 100
             condition3 := True
         }
-        PixelSearch, foundX, foundY, 847, 961, 1042, 1016, 0xFF581F, 0, Fast RGB
-        if (ErrorLevel = 0) {
-            GuiControl, Status:, StatusText, Status: waitingforresult
-            Mousemove, foundX, foundY
-            Click
-            Sleep, 100
-            condition3 := True
-        }
+
     }
     if (!condition4) {
-        PixelGetColor, color, 934,221, RGB
-        if (color = 0xA4A6A4) {
+        PixelGetColor, color, 659, 161, RGB
+        if (color = 0x132336) {
             GuiControl, Status:, StatusText, Status: untilnext
             Sleep, 3000
             Loop {
-                Click 943, 657
-                PixelSearch, foundX, foundY, 877, 812, 1008, 851, 0x232623, 0, Fast RGB
+                Click 636, 469
+                PixelSearch, foundX, foundY, 615, 575, 705, 595, 0x8398B3, 0, Fast RGB
                 if (ErrorLevel = 0) {
                     GuiControl, Status:, StatusText, Status: clicknext
                     Mousemove, foundX, foundY
@@ -162,16 +155,7 @@ NonHostModeFunction() {
                     condition3 := False
                     break
                 }
-                PixelSearch, foundX, foundY, 877, 812, 1008, 851, 0xFF6904, 0, Fast RGB
-                if (ErrorLevel = 0) {
-                    GuiControl, Status:, StatusText, Status: clicknext
-                    Mousemove, foundX, foundY
-                    Click
-                    Sleep, 100
-                    condition3 := False
-                    break
-                }
-                PixelSearch, foundX, foundY, 877, 812, 1008, 851, 0xF85100, 0, Fast RGB
+                PixelSearch, foundX, foundY, 615, 575, 705, 595, 0xE8550B, 0, Fast RGB
                 if (ErrorLevel = 0) {
                     GuiControl, Status:, StatusText, Status: clicknext
                     Mousemove, foundX, foundY
