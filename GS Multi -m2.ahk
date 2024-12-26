@@ -139,33 +139,13 @@ NonHostModeFunction() {
             Sleep, 3000
             Loop {
                 Click 943, 657
-                PixelSearch, foundX, foundY, 877, 812, 1008, 851, 0x232623, 0, Fast RGB
+                PixelSearch, foundX, foundY, 883, 854, 999, 873, 0x0E110E, 0, Fast RGB
                 if (ErrorLevel = 0) {
                     GuiControl, Status:, StatusText, Status: clicknext
-                    Mousemove, foundX, foundY
+                    Mousemove, 941, 867
                     Click
                     Sleep, 100
                     condition3 := False
-                    break
-                }
-                PixelSearch, foundX, foundY, 877, 812, 1008, 851, 0xFF6904, 0, Fast RGB
-                if (ErrorLevel = 0) {
-                    GuiControl, Status:, StatusText, Status: clicknext
-                    Mousemove, foundX, foundY
-                    Click
-                    Sleep, 100
-                    condition3 := False
-                    break
-                }
-                PixelSearch, foundX, foundY, 877, 812, 1008, 851, 0xF85100, 0, Fast RGB
-                if (ErrorLevel = 0) {
-                    GuiControl, Status:, StatusText, Status: clicknext
-                    Mousemove, foundX, foundY
-                    Click
-                    Sleep, 100
-                    condition3 := False
-                    rounds++
-                    GuiControl, Status:, Rounds, Status: %rounds%
                     break
                 }
             }
@@ -179,3 +159,4 @@ NonHostModeFunction() {
 Exit the script when the GUI is closed
 GuiClose:
 ExitApp
+
