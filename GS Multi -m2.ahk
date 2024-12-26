@@ -97,7 +97,7 @@ return
 condition1 := False
 condition2 := False
 condition3 := False
-condition4 := False
+condition4 := True
 
 
 NonHostModeFunction() { 
@@ -129,6 +129,7 @@ NonHostModeFunction() {
             Click
             Sleep, 100
             condition3 := True
+            condition4 := False
         }
 
     }
@@ -146,6 +147,7 @@ NonHostModeFunction() {
                     Click
                     Sleep, 100
                     condition3 := False
+                    condition4 := True
                     break
                 }
             }
