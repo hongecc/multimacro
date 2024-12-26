@@ -125,7 +125,7 @@ NonHostModeFunction() {
         if (ErrorLevel = 0) {
             GuiControl, Status:, StatusText, Status: waitingforresult
             Sleep, 3000
-            Click foundX, foundY
+            Mousemove, foundX, foundY
             Sleep, 100
             condition3 := True
         }
@@ -133,7 +133,7 @@ NonHostModeFunction() {
         if (ErrorLevel = 0) {
             GuiControl, Status:, StatusText, Status: waitingforresult
             Sleep, 3000
-            Click foundX, foundY
+            Mousemove, foundX, foundY
             Sleep, 100
             condition3 := True
         }
@@ -141,7 +141,7 @@ NonHostModeFunction() {
         if (ErrorLevel = 0) {
             GuiControl, Status:, StatusText, Status: waitingforresult
             Sleep, 3000
-            Click foundX, foundY
+            Mousemove, foundX, foundY
             Sleep, 100
             condition3 := True
         }
