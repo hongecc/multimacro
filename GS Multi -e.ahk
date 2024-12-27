@@ -172,11 +172,12 @@ NonHostModeFunction() {
 
 com1 := False
 com2 := True
+com3 := True
 
 AutoCompendium() {
     global
     {
-    if (!con1) {
+    if (!com1) {
         PixelGetColor, color, 938, 1030, RGB
         if (color = 0xE2DFE2) {
             GuiControl, Status:, StatusText, Status: Restarting
@@ -193,19 +194,25 @@ AutoCompendium() {
             }
         }
     }
-    if (!con2) {
+    if (!com2) {
         PixelGetColor, color, 939, 500, RGB
         if (color = 0x181C29) {
-            Sleep 5000
+            Sleep 500
             Mousemove, 939, 500
             Click
             Sleep 1500
+            com3 := False
+            com2 := True
+    if (!com3) {
+        PixelGetColor, color, 931, 925, RGB
+        if (color = 0x040404) {
+            Sleep 500
             Mousemove, 931, 925
             Click
             Sleep 750
             Click
             com1 := False
-            com2 := True
+            com3 := True
         }
     }
 }
