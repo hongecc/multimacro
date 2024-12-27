@@ -196,6 +196,7 @@ AutoCompendium() {
     if (!con2) {
         PixelGetColor, color, 939, 500, RGB
         if (color = 0x181C29) {
+            Sleep 2000
             Mousemove, 939, 500
             Click
             Sleep 1500
