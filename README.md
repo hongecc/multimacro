@@ -16,6 +16,7 @@ Auto-Multi Ready
 
 How to use:
 
+(for all screenshots, make sure to click in game before taking the ss)
 1. Install autohotkey 1.1 at https://autohotkey.com
 2. After installation, head to C:/path/to/program files/autohotkey/windowspy.ahk
 3. place your cursor to hover directly above "Same with Host" button of a lobby (for food)
