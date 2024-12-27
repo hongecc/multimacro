@@ -4,6 +4,7 @@ isPaused := false
 foodClicked := false
 mode := ""
 rounds := 000
+loops := 000
 
 ; Create the mode selection GUI
 Modes() {
@@ -11,6 +12,7 @@ Modes() {
     Gui, Mode: +AlwaysOnTop +Owner
     Gui, Mode: Add, Text,, Select Mode:
     Gui, Mode: Add, Button, gNonHostMode w200 h50, Non-Host
+    Gui, Mode: Add, Button, gAutoCompendium w200 h50, Auto Compendium
     Gui, Mode: Show, x10 y10, Select Mode 
 }
 
@@ -23,6 +25,13 @@ NonHostMode:
 mode := "Non-Host"
 Gui, Mode: Destroy
 MsgBox, Make sure you have already set your unit AI, and joined a lobby before starting.
+ShowMainGUI()
+return
+
+AutoCompendium:
+mode := "Auto Compendium"
+Gui, Mode: Destroy
+MsgBox, Make sure you have a "preset team", started a loop before starting.
 ShowMainGUI()
 return
 
@@ -46,6 +55,7 @@ ShowMainGUI() {
     Gui, Status: +AlwaysOnTop +Owner
     Gui, Status: Add, Text, vStatusText, Status: Stopped
     Gui, Status: Add, Text, vRounds, Rounds: %rounds%
+    Gui, Status: Add, Text, vLoops, Times Looped: %loops%
     Gui, Status: Show, x10 y320, Script Status
 
     ; Set hotkeys
@@ -89,7 +99,12 @@ return
 CheckReadyButton:
 if (isRunning and !isPaused)
 {
-    NonHostModeFunction()
+    if (mode = "Non-Host") {
+        NonHostModeFunction()
+    }
+    else if (mode = "Auto Compendium") {
+        AutoCompendium()
+    }
 }
 return
 
@@ -143,6 +158,8 @@ NonHostModeFunction() {
                     GuiControl, Status:, StatusText, Status: untilnext
                     Click 943, 874
                     Sleep, 100
+                    rounds++
+                    GuiControl, Status:, Rounds, Rounds: %rounds%
                     condition3 := False
                     condition4 := True
                     break
@@ -153,7 +170,44 @@ NonHostModeFunction() {
 }
 
 
+com1 := False
+com2 := True
 
+AutoCompendium() {
+    global
+    {
+    if (!con1) {
+        PixelGetColor, color, 938, 1030, RGB
+        if (color = 0xE2DFE2) {
+            GuiControl, Status:, StatusText, Status: Restarting
+            loops++
+            GuiControl, Status:, Loops, Times Looped: %loops%
+            Mousemove, 996, 980
+            Click
+            Sleep 3000
+            com1 := True
+            }
+        else {
+            Sleep 3000
+            Click
+            }
+        }
+    }
+    if (!con2) {
+        PixelGetColor, color, 939, 500, RGB
+        if (color = 0x181C29) {
+            Mousemove, 939, 500
+            Click
+            Sleep 1500
+            Mousemove, 931, 925
+            Click
+            Sleep 750
+            Click
+            com1 := False
+            com2 := True
+        }
+    }
+}
 
 Exit the script when the GUI is closed
 GuiClose:
