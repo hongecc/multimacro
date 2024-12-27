@@ -183,14 +183,14 @@ AutoCompendium() {
             GuiControl, Status:, StatusText, Status: Restarting
             loops++
             GuiControl, Status:, Loops, Times Looped: %loops%
-            Sleep 4000
+            Sleep, 1500
             Mousemove, 941, 1032
             Click
-            Sleep 3000
             com1 := True
+            com2 := False
             }
         else {
-            Sleep 3000
+            Sleep, 3000
             Click
             }
         }
@@ -198,7 +198,7 @@ AutoCompendium() {
     if (!com2) {
         PixelGetColor, color, 939, 500, RGB
         if (color = 0x181C29) {
-            Sleep 500
+            Sleep, 500
             Mousemove, 939, 500
             Click
             Sleep 1500
