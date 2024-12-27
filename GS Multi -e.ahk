@@ -184,6 +184,10 @@ AutoCompendium() {
             loops++
             GuiControl, Status:, Loops, Times Looped: %loops%
             Sleep, 1500
+            Click 939, 562
+            Sleep, 500
+            Click 939, 562
+            Sleep, 1500
             Mousemove, 941, 1032
             Click
             com1 := True
