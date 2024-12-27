@@ -120,8 +120,8 @@ NonHostModeFunction() {
 
     if (!condition3 && condition2) {
         GuiControl, Status:, StatusText, Status: ready
-        PixelSearch, foundX, foundY, 847, 961, 1042, 1016, 0x050600, 0, Fast RGB
-        if (ErrorLevel = 0) {
+        PixelGetColor, color, 867, 987, RGB
+        if (color = FF581F) {
             GuiControl, Status:, StatusText, Status: waitingforresult
             Sleep, 2000
             Click 935, 991
@@ -137,14 +137,16 @@ NonHostModeFunction() {
             Sleep, 3000
             Loop {
                 Click 943, 657
-                PixelSearch, foundX, foundY, 877, 812, 1008, 851, 0x232623, 0, Fast RGB
-                if (ErrorLevel = 0) {
+                PixelGetColor, color, 939, 834, RGB
+                if (color = 0x232523) {
                     GuiControl, Status:, StatusText, Status: clicknext
                     Sleep, 800
-                    Click 939, 834
+                    Click 901, 833
                     Sleep, 100
                     condition3 := False
                     condition4 := True
+                    rounds++
+                    GuiControl, Status:, rounds, Rounds: %rounds%
                     break
                 }
             }
