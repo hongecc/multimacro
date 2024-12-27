@@ -140,7 +140,7 @@ NonHostModeFunction() {
                 Click 940, 701
                 PixelGetColor, color, 935, 864, RGB
                 if (color = 0xBC5C14) {
-                    GuiControl, Status:, StatusText, Status: untilnext
+                    GuiControl, Status:, StatusText, Status: clicknext
                     Click 935, 864
                     Sleep, 100
                     condition3 := False
