@@ -262,7 +262,7 @@ AutoCrest() {
     {  
         if (!con) {
             PixelGetColor, color, 947, 921, RGB
-            if (color = 8A8C98) {
+            if (color = 0x8A8C98) {
                 Mousemove 947, 921 ; Battle
                 Sleep 2500
                 Click
@@ -298,6 +298,7 @@ AutoCrest() {
                 else if (counter < MaxLoops) {
                     PixelGetColor, color, 929, 450, RGB ; Start Message
                     if (color = 0x282828) { 
+                        counter++
                         rounds++
                         GuiControl, Status:, Rounds, Rounds: %rounds%
                         Sleep 5000
