@@ -201,16 +201,17 @@ AutoCompendium() {
     }
 
     if (!com2) {
+        Mousemove, 939 562
         StartTime := A_TickCount
         Duration := 5000
         while (A_TickCount - StartTime < Duration) {
             Send {WheelDown}
             Sleep 100
         }
-        PixelGetColor, color, 931, 798, RGB
+        PixelGetColor, color, 939, 798, RGB
         if (color = 0x182029) {
             Sleep, 500
-            Mousemove, 939, 500
+            Mousemove, 939, 798
             Click
             Sleep 1500
             com3 := False
