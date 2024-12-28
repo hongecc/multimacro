@@ -197,14 +197,12 @@ AutoCompendium() {
         }
     }
     if (!com2) {
-        PixelGetColor, color, 943, 478, RGB ; Cross Battle
-        if (color = 0x10253F) {
-            Sleep, 500
-            Mousemove, 940, 487 ; Cross Battle
-            Click
-            Sleep 1500
-            com3 := False
-            com2 := True
+        Sleep, 500
+        Mousemove, 940, 487 ; Cross Battle
+        Click
+        Sleep 1500
+        com3 := False
+        com2 := True
             }
     }
     if (!com3) {
