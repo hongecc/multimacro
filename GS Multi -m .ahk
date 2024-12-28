@@ -261,8 +261,8 @@ AutoCrest() {
     global
     {  
         if (!con) {
-            PixelGetColor, color, 947, 921, RGB
-            if (color = 0x8A8C98) {
+            PixelGetColor, color, 945, 923, RGB
+            if (color = 0x25272A) {
                 Mousemove 947, 921 ; Battle
                 Sleep 2500
                 Click
