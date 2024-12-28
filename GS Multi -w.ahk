@@ -197,7 +197,7 @@ AutoCompendium() {
         }
     }
     if (!com2) {
-        Sleep, 500
+        Sleep, 2000
         Mousemove, 940, 487 ; Cross Battle
         Click
         Sleep 1500
