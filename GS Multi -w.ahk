@@ -27,6 +27,7 @@ MsgBox, Make sure you have already set your unit AI, and joined a lobby before s
 ShowMainGUI()
 return
 
+AutoCompendium:
 mode := "Auto Compendium"
 Gui, Mode: Destroy
 MsgBox, Make sure you have a "preset team", started a loop before starting.
