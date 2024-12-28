@@ -11,6 +11,7 @@ Modes() {
     Gui, Mode: +AlwaysOnTop +Owner
     Gui, Mode: Add, Text,, Select Mode:
     Gui, Mode: Add, Button, gNonHostMode w200 h50, Non-Host
+    Gui, Mode: Add, Button, gAutoCompendium w200 h50, Auto Compendium
     Gui, Mode: Show, x10 y10, Select Mode 
 }
 
@@ -26,6 +27,11 @@ MsgBox, Make sure you have already set your unit AI, and joined a lobby before s
 ShowMainGUI()
 return
 
+mode := "Auto Compendium"
+Gui, Mode: Destroy
+MsgBox, Make sure you have a "preset team", started a loop before starting.
+ShowMainGUI()
+return
 ; Show the main control GUI
 ShowMainGUI() {
     global
@@ -89,7 +95,12 @@ return
 CheckReadyButton:
 if (isRunning and !isPaused)
 {
-    NonHostModeFunction()
+    if (mode = "Non-Host") {
+        NonHostModeFunction()
+    }
+    else if (mode = "Auto Compendium") {
+        AutoCompendium()
+    }
 }
 return
 
@@ -113,35 +124,35 @@ NonHostModeFunction() {
     }   
     if (!condition2) {
         GuiControl, Status:, StatusText, Status: food
-        Click 718, 810
+        Click 718, 810 ; food
         Sleep, 500
         condition2 := True
     }
 
     if (!condition3 && condition2) {
         GuiControl, Status:, StatusText, Status: ready
-        PixelGetColor, color, 867, 987, RGB
+        PixelGetColor, color, 867, 987, RGB ; Ready Button
         if (color = FF581F) {
             GuiControl, Status:, StatusText, Status: waitingforresult
             Sleep, 2000
-            Click 935, 991
+            Click 935, 991 
             Sleep, 100
             condition3 := True
             condition4 := False
             }
         }
     if (!condition4) {
-        PixelGetColor, color, 947, 218, RGB
-        if (color = 0xD7D7D7) {
+        PixelGetColor, color, 947, 218, RGB ; Results
+        if (color = 0xD7D7D7) { ; Results Color
             GuiControl, Status:, StatusText, Status: untilnext
             Sleep, 3000
             Loop {
-                Click 943, 657
-                PixelGetColor, color, 939, 834, RGB
+                Click 943, 657 ; Inventory Full
+                PixelGetColor, color, 939, 834, RGB ; Next Button
                 if (color = 0x232523) {
                     GuiControl, Status:, StatusText, Status: clicknext
                     Sleep, 800
-                    Click 901, 833
+                    Click 901, 833 ; Next Button
                     Sleep, 100
                     condition3 := False
                     condition4 := True
@@ -153,6 +164,67 @@ NonHostModeFunction() {
         }
     }
 }
+
+
+com1 := False
+com2 := True
+com3 := True
+
+AutoCompendium() {
+    global
+    {
+    if (!com1) {
+        PixelGetColor, color, 940, 988, RGB ; Ok Button
+        if (color = 0x878787) { ; Ok Button Colour
+            GuiControl, Status:, StatusText, Status: Restarting
+            loops++
+            GuiControl, Status:, Loops, Times Looped: %loops%
+            Sleep, 1500
+            Click 939, 562
+            Sleep, 500
+            Click 939, 562
+            Sleep, 1500
+            Mousemove, 940, 988 ; Ok Button
+            Click
+            com1 := True
+            com2 := False
+            }
+        else {
+            Sleep, 3000
+            Click
+            }
+        }
+    }
+    if (!com2) {
+        PixelGetColor, color, 940, 487, RGB ; Cross Battle
+        if (color = 0x342152) {
+            Sleep, 500
+            Mousemove, 940, 487 ; Cross Battle
+            Click
+            Sleep 1500
+            com3 := False
+            com2 := True
+            }
+    }
+    if (!com3) {
+        PixelGetColor, color, 938, 883, RGB ; Battle
+        if (color = 0x000000) {
+            Sleep 500
+            Mousemove, 938, 883 ; Battle
+            Click
+            Sleep 750
+            Click
+            com1 := False
+            com3 := True
+        
+        }
+    }
+}
+
+
+Exit the script when the GUI is closed
+GuiClose:
+ExitApp
 
 
 
