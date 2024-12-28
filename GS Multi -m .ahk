@@ -51,7 +51,7 @@ MaxLoop() {
 }
 ; Hosting mode action
 50Loop:
-MaxLoops = 50
+MaxLoops = 3
 Gui, Mode: Destroy
 Gui, MaxLoops: Destroy
 ShowMainGUI()
@@ -261,12 +261,15 @@ AutoCrest() {
     global
     {  
         if (!con) {
-            Mousemove 934, 615 ; Battle
-            Sleep 2500
-            Click
-            Sleep 1000
-            Click
-            con := True 
+            PixelGetColor, color, 947, 921, RGB
+            if (color = 8A8C98) {
+                Mousemove 947, 921 ; Battle
+                Sleep 2500
+                Click
+                Sleep 1000
+                Click
+                con := True 
+            }
         }
         if (!con1) {
             Loop {
@@ -327,7 +330,7 @@ AutoCrest() {
             Mousemove, 802, 482 ; Single player
             Click
             Sleep 1500
-            Mousemove, 934, 615 ; Battle
+            Mousemove, 947, 921 ; Battle
             Click
             Sleep 750
             Click
