@@ -206,7 +206,6 @@ AutoCompendium() {
         Duration := 5000
         while (A_TickCount - StartTime < Duration) {
             Send {WheelDown}
-            Sleep 100
         }
         PixelGetColor, color, 939, 798, RGB
         if (color = 0x182029) {
