@@ -227,9 +227,3 @@ GuiClose:
 ExitApp
 
 
-
-
-
-Exit the script when the GUI is closed
-GuiClose:
-ExitApp
