@@ -300,6 +300,14 @@ AutoCrest() {
                         GuiControl, Status:, Rounds, Rounds: %rounds%
                         Sleep 5000
                         }
+                PixelGetColor, color, 874, 391, RGB 
+                if (color = 0x215173) {
+                    isRunning := false
+                    SetTimer, CheckReadyButton, Off
+                    GuiControl, Status:, StatusText, Status: Stopped
+                    MsgBox, 0x40000, Process Terminated, The process has been terminated as you have been disconnected.
+                    ExitApp
+                }
                 else {
                     PixelGetColor, color, 1108, 635 ; Cancel
                     if (color = 0x2D312D) {
@@ -313,6 +321,15 @@ AutoCrest() {
                         mousemove 939, 809 ; Crest Reward
                         sleep 750
                         click
+
+                PixelGetColor, color, 874, 391, RGB 
+                if (color = 0x215173) {
+                    isRunning := false
+                    SetTimer, CheckReadyButton, Off
+                    GuiControl, Status:, StatusText, Status: Stopped
+                    MsgBox, 0x40000, Process Terminated, The process has been terminated as you have a 4+ drop or crest burst.
+                    ExitApp
+                }
                 }
                     }
                 }
