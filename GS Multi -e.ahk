@@ -207,8 +207,8 @@ AutoCompendium() {
             Send {WheelDown}
             Sleep 100
         }
-        PixelGetColor, color, 939, 500, RGB
-        if (color = 0x181C29) {
+        PixelGetColor, color, 931, 798, RGB
+        if (color = 0x182029) {
             Sleep, 500
             Mousemove, 939, 500
             Click
