@@ -198,7 +198,6 @@ NonHostModeFunction() {
     }
 }
 
-con := False
 con1 := False
 con2 := True
 
@@ -259,10 +258,8 @@ AutoCompendium() {
 counter = 00
 AutoCrest() {
     global
-    {  
-        if (!con) {
-            PixelGetColor, color, 945, 923, RGB
-            if (color = 0x25272A) {
+        {  
+        Loop 1 {
                 Mousemove 947, 921 ; Battle
                 Sleep 2500
                 Click
@@ -321,7 +318,6 @@ AutoCrest() {
                 }
             }
         }
-    }
     if (!con2) {
         PixelGetColor, color, 934, 615, RGB ; Select Stage
         if (color = 0x181418) {
