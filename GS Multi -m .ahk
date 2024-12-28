@@ -51,7 +51,7 @@ MaxLoop() {
 }
 ; Hosting mode action
 50Loop:
-MaxLoops = 3
+MaxLoops = 50
 Gui, Mode: Destroy
 Gui, MaxLoops: Destroy
 ShowMainGUI()
@@ -337,16 +337,6 @@ AutoCrest() {
             Click
             loops++
             GuiControl, Status:, Loops, Times Looped: %loops%
-            if (MaxLoops = 50) {
-                if (rounds mod 49 != 0) {
-                    rounds = 49 * loops
-                }
-            }
-            Else {
-                if (round mod 99 != 0) {
-                    rounds = 99 * loops
-                }
-            }
             counter = 0
             con1 := False
             con2 := True
