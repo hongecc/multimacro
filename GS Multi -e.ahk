@@ -201,7 +201,7 @@ AutoCompendium() {
     }
 
     if (!com2) {
-        Mousemove, 939 562
+        Mousemove, 939, 562
         StartTime := A_TickCount
         Duration := 5000
         while (A_TickCount - StartTime < Duration) {
