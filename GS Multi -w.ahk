@@ -203,7 +203,6 @@ AutoCompendium() {
         Sleep 1500
         com3 := False
         com2 := True
-            }
     }
     if (!com3) {
         PixelGetColor, color, 938, 883, RGB ; Battle
