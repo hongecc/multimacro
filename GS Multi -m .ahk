@@ -6,6 +6,7 @@ mode := ""
 rounds := 000
 loops := 000
 MaxLoops = 000
+fail = 000
 
 ; Create the mode selection GUI
 Modes() {
@@ -84,6 +85,7 @@ ShowMainGUI() {
     Gui, Status: Add, Text, vStatusText, Status: Stopped
     Gui, Status: Add, Text, vRounds, Rounds: %rounds%
     Gui, Status: Add, Text, vLoops, Times Looped: %loops%
+    Gui, Status: Add, Text, vFailed, Times Failed: %fail%
     Gui, Status: Show, x10 y320, Script Status
 
     ; Set hotkeys
@@ -316,6 +318,8 @@ AutoCrest() {
                         Sleep, 1000
                         Mousemove, 937, 672 ; Restart
                         Click
+                        fail++
+                        GuiControl, Status:, Failed, Times Failed: %fail%
                         }
                     Else {
                         mousemove 939, 809 ; Crest Reward
