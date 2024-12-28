@@ -199,7 +199,14 @@ AutoCompendium() {
             }
         }
     }
+
     if (!com2) {
+        StartTime := A_TickCount
+        Duration := 5000
+        while (A_TickCount - StartTime < Duration) {
+            Send {WheelDown}
+            Sleep 100
+        }
         PixelGetColor, color, 939, 500, RGB
         if (color = 0x181C29) {
             Sleep, 500
