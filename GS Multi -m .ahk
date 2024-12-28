@@ -51,7 +51,7 @@ MaxLoop() {
 }
 ; Hosting mode action
 50Loop:
-MaxLoops = 50
+MaxLoops = 2
 Gui, Mode: Destroy
 Gui, MaxLoops: Destroy
 ShowMainGUI()
