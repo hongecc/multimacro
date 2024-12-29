@@ -340,6 +340,7 @@ AutoCrest() {
             }
         }
     if (!con2) {
+            Sleep 2500
             Mousemove, 934, 615 ; Select Stage
             Click
             Sleep 1500
