@@ -300,7 +300,7 @@ AutoCrest() {
                         counter++
                         rounds++
                         GuiControl, Status:, Rounds, Rounds: %rounds%
-                        Sleep 5000
+                        Sleep 2500
                         }
                 PixelGetColor, color, 874, 391, RGB 
                 if (color = 0x215173) {
