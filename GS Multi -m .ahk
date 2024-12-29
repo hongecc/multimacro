@@ -340,22 +340,22 @@ AutoCrest() {
             }
         }
     if (!con2) {
-            Sleep 5500
-            Mousemove, 934, 615 ; Select Stage
-            Click
-            Sleep 1500
-            Mousemove, 802, 482 ; Single player
-            Click
-            Sleep 1500
-            Mousemove, 947, 921 ; Battle
-            Click
-            Sleep 750
-            Click
-            loops++
-            GuiControl, Status:, Loops, Times Looped: %loops%
-            counter = 0
-            con1 := False
-            con2 := True
+        Sleep 5500
+        Mousemove, 934, 615 ; Select Stage
+        Click
+        Sleep 1500
+        Mousemove, 802, 482 ; Single player
+        Click
+        Sleep 1500
+        Mousemove, 947, 921 ; Battle
+        Click
+        Sleep 750
+        Click
+        loops++
+        GuiControl, Status:, Loops, Times Looped: %loops%
+        counter = 0
+        con1 := False
+        con2 := True
         }
     }
 
