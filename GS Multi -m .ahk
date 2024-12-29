@@ -340,8 +340,6 @@ AutoCrest() {
             }
         }
     if (!con2) {
-        PixelGetColor, color, 934, 615, RGB ; Select Stage
-        if (color = 0x181418) {
             Mousemove, 934, 615 ; Select Stage
             Click
             Sleep 1500
@@ -359,7 +357,6 @@ AutoCrest() {
             con2 := True
         }
     }
-}
 
 Exit the script when the GUI is closed
 GuiClose:
