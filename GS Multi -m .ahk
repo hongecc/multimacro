@@ -207,21 +207,21 @@ con2 := True
 AutoCompendium() {
     global
     {
-    PixelGetColor, color, 935, 477, RGB ; Start Message
-    if (color = 0x002341) { 
+    PixelGetColor, color, 929, 450, RGB ; Start Message
+    if (color = 0x282828) { 
         rounds++
         GuiControl, Status:, Rounds, Rounds: %rounds%
         Sleep 5000
         }
-
-    if (!con) {
-        GuiControl, Status:, StatusText, Status: FirstBattle
-        Mousemove 937, 880
-        Sleep 2500
-        Click
-        Sleep 1000
-        Click
-        con := True
+    }
+    Loop 1 {
+            GuiControl, Status:, StatusText, Status: FirstBattle
+            Mousemove 947, 921 ; Battle
+            Sleep 2500
+            Click
+            Sleep 1000
+            Click
+            break
     }
 
     if (!con1) {
@@ -229,7 +229,7 @@ AutoCompendium() {
         if (color = 0xFF8924) {
             GuiControl, Status:, StatusText, Status: Restarting
             Sleep 750
-            Mousemove, 996, 980
+            Mousemove, 943, 1038
             Click
             Sleep 3000
             con1 := True
@@ -241,15 +241,15 @@ AutoCompendium() {
             Click
             }
         }
-    }
+    
     if (!con2) {
         PixelGetColor, color, 971, 447, RGB
         if (color = 0x085973) {
             Sleep 1500
-            Mousemove, 971, 447
+            Mousemove, 924, 488
             Sleep 750
             Click
-            Mousemove, 937, 880
+            Mousemove, 947, 921
             Sleep 750
             Click
             Sleep 750
@@ -260,6 +260,7 @@ AutoCompendium() {
             con2 := True
         }
     }
+    GuiControl, Status:, StatusText, Status: Looping
 }
 
 counter = 00
@@ -272,6 +273,7 @@ AutoCrest() {
                 Click
                 Sleep 1000
                 Click
+                break
             }
         }
         if (!con1) {
@@ -364,6 +366,7 @@ AutoCrest() {
         con1 := False
         con2 := True
         }
+    GuiControl, Status:, StatusText, Status: Looping
     }
 
 Exit the script when the GUI is closed
