@@ -270,7 +270,6 @@ AutoCrest() {
                 Click
                 Sleep 1000
                 Click
-                con := True 
             }
         }
         if (!con1) {
