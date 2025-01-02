@@ -5,8 +5,8 @@ foodClicked := false
 mode := ""
 rounds := 000
 loops := 000
-MaxLoops = 000
-fail = 000
+MaxLoops := 000
+fail := 000
 
 ; Create the mode selection GUI
 Modes() {
@@ -22,7 +22,6 @@ Modes() {
 Modes()
 return
 
-
 ; Non-Host mode action
 NonHostMode:
 mode := "Non-Host"
@@ -30,12 +29,27 @@ Gui, Mode: Destroy
 MsgBox, Make sure you have already set your unit AI, and joined a lobby before starting.
 ShowMainGUI()
 return
+
+; Auto Compendium mode action
 AutoCompendium:
 mode := "Auto Compendium"
 Gui, Mode: Destroy
-MsgBox, Make sure you have already started the l00p at raid boss practice before starting.
+Gui, Input: +AlwaysOnTop +Owner
+Gui, Input: Add, Text,, Enter number of loops:
+Gui, Input: Add, Edit, vMaxLoops w200
+Gui, Input: Add, Button, gStartAutoCompendium w200 h50, Start
+Gui, Input: Show, x10 y10, Enter Loops
+return
+
+StartAutoCompendium:
+Gui, Input: Submit
+MaxLoops := MaxLoops + 0 ; Ensure it's a number
+Gui, Input: Destroy
+MsgBox, Make sure you have already started the loop at raid boss practice before starting.
 ShowMainGUI()
 return
+
+; Auto Crest mode action
 AutoCrest:
 mode := "Auto Crest"
 MsgBox, Make sure you have already started the loop crest before starting.
@@ -50,6 +64,7 @@ MaxLoop() {
     Gui, MaxLoops: Add, Button, g100Loop w200 h50, 100
     Gui, MaxLoops: Show, x10 y10, Select Loops
 }
+
 ; Hosting mode action
 test:
 MaxLoops = 3
@@ -57,6 +72,7 @@ Gui, Mode: Destroy
 Gui, MaxLoops: Destroy
 ShowMainGUI()
 Return
+
 100Loop:
 MaxLoops = 100
 Gui, Mode: Destroy
@@ -130,10 +146,10 @@ CheckReadyButton:
 if (isRunning and !isPaused)
 {
     if (mode = "Non-Host") {
-    NonHostModeFunction()
+        NonHostModeFunction()
     }
     else if (mode = "Auto Compendium") {
-        AutoCompendium()
+        AutoCompendiumFunction()
     }
     else if (mode = "Auto Crest") {
         AutoCrest()
@@ -146,7 +162,6 @@ condition1 := False
 condition2 := False
 condition3 := False
 condition4 := True
-
 
 NonHostModeFunction() { 
     global
@@ -186,35 +201,36 @@ NonHostModeFunction() {
             Sleep, 3000
             Loop {
                 Click 940, 701
-                PixelGetColor, color, 935, 864, RGB
-                if (color = 0xBC5C14) {
-                    GuiControl, Status:, StatusText, Status: clicknext
-                    Click 935, 864
-                    Sleep, 100
-                    condition3 := False
-                    condition4 := True
-                    break
+                colors := ["0x232623", "0xFF6904", "0xF85100"]
+                Loop, % colors.MaxIndex() {
+                    PixelSearch, foundX, foundY, 877, 812, 1008, 851, % colors[A_Index], 0, Fast RGB
+                    if (ErrorLevel = 0) {
+                        GuiControl, Status:, StatusText, Status: clicknext
+                        Mousemove, foundX, foundY
+                        Click
+                        Sleep, 100
+                        condition3 := False
+                        rounds++
+                        GuiControl, Status:, Rounds, Rounds: %rounds%
+                        break 2
+                    }
                 }
             }
         }
     }
 }
 
-con := False
-con1 := False
-con2 := True
-
-AutoCompendium() {
+AutoCompendiumFunction() {
     global
-    {
-    PixelGetColor, color, 929, 450, RGB ; Start Message
-    if (color = 0x282828) { 
-        rounds++
-        GuiControl, Status:, Rounds, Rounds: %rounds%
-        Sleep 5000
+    Loop, %MaxLoops% {
+        ; Your Auto Compendium logic here
+        PixelGetColor, color, 929, 450, RGB ; Start Message
+        if (color = 0x282828) { 
+            rounds++
+            GuiControl, Status:, Rounds, Rounds: %rounds%
+            Sleep 5000
         }
-    }
-    Loop 1 {
+        Loop 1 {
             GuiControl, Status:, StatusText, Status: FirstBattle
             Mousemove 947, 921 ; Battle
             Sleep 2500
@@ -222,92 +238,93 @@ AutoCompendium() {
             Sleep 1000
             Click
             break
-    }
+        }
 
-    if (!con1) {
-        PixelGetColor, color, 966, 980, RGB
-        if (color = 0xFF8924) {
-            GuiControl, Status:, StatusText, Status: Restarting
-            Sleep 750
-            Mousemove, 943, 1038
-            Click
-            Sleep 3000
-            con1 := True
-            con2 := False
+        if (!con1) {
+            PixelGetColor, color, 966, 980, RGB
+            if (color = 0xFF8924) {
+                GuiControl, Status:, StatusText, Status: Restarting
+                Sleep 750
+                Mousemove, 943, 1038
+                Click
+                Sleep 3000
+                con1 := True
+                con2 := False
             }
-        else {
-            GuiControl, Status:, StatusText, Status: Looping
-            Sleep 750
-            Click
+            else {
+                GuiControl, Status:, StatusText, Status: Looping
+                Sleep 750
+                Click
             }
         }
-    
-    if (!con2) {
-        PixelGetColor, color, 971, 447, RGB
-        if (color = 0x085973) {
-            Sleep 1500
-            Mousemove, 924, 488
-            Sleep 750
-            Click
-            Mousemove, 947, 921
-            Sleep 750
-            Click
-            Sleep 750
-            Click
-            loops++
-            GuiControl, Status:, Loops, Times Looped: %loops%
-            con1 := False
-            con2 := True
+
+        if (!con2) {
+            PixelGetColor, color, 971, 447, RGB
+            if (color = 0x085973) {
+                Sleep 1500
+                Mousemove, 924, 488
+                Sleep 750
+                Click
+                Mousemove, 947, 921
+                Sleep 750
+                Click
+                Sleep 750
+                Click
+                loops++
+                GuiControl, Status:, Loops, Times Looped: %loops%
+                con1 := False
+                con2 := True
+            }
         }
+        GuiControl, Status:, StatusText, Status: Looping
     }
-    GuiControl, Status:, StatusText, Status: Looping
 }
 
 counter = 00
 AutoCrest() {
     global
-        {  
+    {  
         Loop 1 {
-                Mousemove 947, 921 ; Battle
-                Sleep 2500
-                Click
-                Sleep 1000
-                Click
-                break
-            }
+            Mousemove 947, 921 ; Battle
+            Sleep 2500
+            Click
+            Sleep 1000
+            Click
+            break
         }
-        if (!con1) {
-            Loop {
-                if (counter+1 = MaxLoops) {
-                    PixelGetColor, color, 1134, 1021, RGB ; End Battle
-                    if (color = 0x2A96FF) {
-                        Sleep, 750
-                        Mousemove, 1134, 1021 ; End Battle 
-                        Click
-                        Sleep, 1500
-                        Mousemove, 939, 809 ; Crest Reward
-                        Click
-                        Sleep, 1000
-                        Click
-                        Sleep, 1000
-                        Click
-                        Mousemove, 943, 1038 ; Ok
-                        Sleep, 1000
-                        Click
-                        GuiControl, Status:, StatusText, Status: Restarting
-                        con2 := False
-                        con1 := True
-                        break
-                    }
+    }
+    if (!con1) {
+        Loop {
+            if (counter+1 = MaxLoops) {
+                PixelGetColor, color, 1134, 1021, RGB ; End Battle
+                if (color = 0x2A96FF) {
+                    Sleep, 750
+                    Mousemove, 1134, 1021 ; End Battle 
+                    Click
+                    Sleep, 1500
+                    Mousemove, 939, 809 ; Crest Reward
+                    Click
+                    Sleep, 1000
+                    Click
+                    Sleep, 1000
+                    Click
+                    Mousemove, 943, 1038 ; Ok
+                    Sleep, 1000
+                    Click
+                    GuiControl, Status:, StatusText, Status: Restarting
+                    con2 := False
+                    con1 := True
+                    break
                 }
-                else if (counter < MaxLoops) {
-                    PixelGetColor, color, 929, 450, RGB ; Start Message
-                    if (color = 0x282828) { 
-                        counter++
-                        rounds++
-                        GuiControl, Status:, Rounds, Rounds: %rounds%
-                        Sleep 2500
-                        }
+            }
+            else if (counter < MaxLoops) {
+                PixelGetColor, color, 929, 450, RGB ; Start Message
+                if (color = 0x282828) { 
+                    counter++
+                    rounds++
+                    GuiControl, Status:, Rounds, Rounds: %rounds%
+                    Sleep 2500
+                }
                 PixelGetColor, color, 874, 391, RGB 
                 if (color = 0x215173) {
                     isRunning := false
@@ -327,26 +344,26 @@ AutoCrest() {
                         Click
                         fail++
                         GuiControl, Status:, Failed, Times Failed: %fail%
-                        }
-                    Else {
+                    }
+                    else {
                         GuiControl, Status:, StatusText, Status: Looping
                         mousemove 939, 809 ; Crest Reward
                         sleep 750
                         click
 
-                PixelGetColor, color, 874, 391, RGB 
-                if (color = 0x215173) {
-                    isRunning := false
-                    SetTimer, CheckReadyButton, Off
-                    GuiControl, Status:, StatusText, Status: Stopped
-                    MsgBox, 0x40000, Process Terminated, The process has been terminated as you have a 4+ drop or crest burst.
-                    ExitApp
-                }
-                }
+                        PixelGetColor, color, 874, 391, RGB 
+                        if (color = 0x215173) {
+                            isRunning := false
+                            SetTimer, CheckReadyButton, Off
+                            GuiControl, Status:, StatusText, Status: Stopped
+                            MsgBox, 0x40000, Process Terminated, The process has been terminated as you have a 4+ drop or crest burst.
+                            ExitApp
+                        }
                     }
                 }
             }
         }
+    }
     if (!con2) {
         GuiControl, Status:, StatusText, Status: Restarting
         Sleep 5500
@@ -365,10 +382,10 @@ AutoCrest() {
         counter = 0
         con1 := False
         con2 := True
-        }
-    GuiControl, Status:, StatusText, Status: Looping
     }
+    GuiControl, Status:, StatusText, Status: Looping
+}
 
-Exit the script when the GUI is closed
+; Exit the script when the GUI is closed
 GuiClose:
 ExitApp
