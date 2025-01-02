@@ -46,13 +46,13 @@ MaxLoop() {
     global
     Gui, MaxLoops: +AlwaysOnTop +Owner
     Gui, MaxLoops: Add, Text,, Select the amount of maximum loops you have:
-    Gui, MaxLoops: Add, Button, g50Loop w200 h50, 50
+    Gui, MaxLoops: Add, Button, gtest w200 h50, Test (three loops)
     Gui, MaxLoops: Add, Button, g100Loop w200 h50, 100
     Gui, MaxLoops: Show, x10 y10, Select Loops
 }
 ; Hosting mode action
-50Loop:
-MaxLoops = 2
+test:
+MaxLoops = 3
 Gui, Mode: Destroy
 Gui, MaxLoops: Destroy
 ShowMainGUI()
@@ -200,6 +200,7 @@ NonHostModeFunction() {
     }
 }
 
+con := False
 con1 := False
 con2 := True
 
@@ -231,8 +232,10 @@ AutoCompendium() {
             Click
             Sleep 3000
             con1 := True
+            con2 := False
             }
         else {
+            Sleep 750
             Click
             }
         }
@@ -240,7 +243,7 @@ AutoCompendium() {
     if (!con2) {
         PixelGetColor, color, 971, 447, RGB
         if (color = 0x085973) {
-            Sleep 750
+            Sleep 1500
             Mousemove, 971, 447
             Sleep 750
             Click
