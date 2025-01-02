@@ -222,7 +222,8 @@ NonHostModeFunction() {
 
 AutoCompendiumFunction() {
     global
-    Loop, %MaxLoops% {
+    Loop {
+        ; Your Auto Compendium logic here
         PixelGetColor, color, 929, 450, RGB ; Start Message
         if (color = 0x282828) { 
             rounds++
@@ -260,6 +261,14 @@ AutoCompendiumFunction() {
         if (!con2) {
             PixelGetColor, color, 971, 447, RGB
             if (color = 0x085973) {
+                loops++
+                GuiControl, Status:, Loops, Times Looped: %loops%
+                if (loops+1 = MaxLoops) {
+                    GuiControl, Status:, StatusText, Status: Stopped
+                    MsgBox, 0x40000, Process Terminated, The process has been terminated as %MaxLoops% loops have been completed.
+                    ExitApp
+                    break
+                }
                 Sleep 1500
                 Mousemove, 924, 488
                 Sleep 750
@@ -269,8 +278,7 @@ AutoCompendiumFunction() {
                 Click
                 Sleep 750
                 Click
-                loops++
-                GuiControl, Status:, Loops, Times Looped: %loops%
+
                 con1 := False
                 con2 := True
             }
