@@ -215,6 +215,7 @@ AutoCompendium() {
         }
 
     if (!con) {
+        GuiControl, Status:, StatusText, Status: FirstBattle
         Mousemove 937, 880
         Sleep 2500
         Click
@@ -235,6 +236,7 @@ AutoCompendium() {
             con2 := False
             }
         else {
+            GuiControl, Status:, StatusText, Status: Looping
             Sleep 750
             Click
             }
@@ -315,6 +317,7 @@ AutoCrest() {
                 else {
                     PixelGetColor, color, 1108, 635 ; Cancel
                     if (color = 0x2D312D) {
+                        GuiControl, Status:, StatusText, Status: RoundFailed
                         Mousemove, 1108, 635 ; Cancel
                         Click
                         Sleep, 1000
@@ -324,6 +327,7 @@ AutoCrest() {
                         GuiControl, Status:, Failed, Times Failed: %fail%
                         }
                     Else {
+                        GuiControl, Status:, StatusText, Status: Looping
                         mousemove 939, 809 ; Crest Reward
                         sleep 750
                         click
@@ -342,6 +346,7 @@ AutoCrest() {
             }
         }
     if (!con2) {
+        GuiControl, Status:, StatusText, Status: Restarting
         Sleep 5500
         Mousemove, 934, 615 ; Select Stage
         Click
