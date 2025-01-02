@@ -223,7 +223,6 @@ NonHostModeFunction() {
 AutoCompendiumFunction() {
     global
     Loop, %MaxLoops% {
-        ; Your Auto Compendium logic here
         PixelGetColor, color, 929, 450, RGB ; Start Message
         if (color = 0x282828) { 
             rounds++
