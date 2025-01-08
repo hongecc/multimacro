@@ -133,7 +133,7 @@ NonHostModeFunction() {
     if (!condition3 && condition2) {
         GuiControl, Status:, StatusText, Status: ready
         PixelGetColor, color, 867, 987, RGB ; Ready Button
-        if (color = FF581F) {
+        if (color = 0xFF581F) {
             GuiControl, Status:, StatusText, Status: waitingforresult
             Sleep, 2000
             Click 935, 991 
