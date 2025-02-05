@@ -3,7 +3,7 @@ isRunning := false
 isPaused := false
 foodClicked := false
 mode := ""
-rounds := 000
+rounds := 0000
 loops := 000
 MaxLoops := 000
 fail := 000
@@ -286,112 +286,125 @@ AutoCompendiumFunction() {
         GuiControl, Status:, StatusText, Status: Looping
     }
 }
+con := False
+con1 := False
+con2 := True
 
-counter = 00
+counter = 000
 AutoCrest() {
     global
     {  
-        Loop 1 {
-            Mousemove 947, 921 ; Battle
+        if (!con) {
+            Mousemove 947, 921
             Sleep 2500
             Click
-            Sleep 1000
+            Sleep 2500
             Click
-            break
+            con := True 
         }
-    }
-    if (!con1) {
-        Loop {
-            if (counter+1 = MaxLoops) {
-                PixelGetColor, color, 1134, 1021, RGB ; End Battle
-                if (color = 0x2A96FF) {
-                    Sleep, 750
-                    Mousemove, 1134, 1021 ; End Battle 
-                    Click
-                    Sleep, 1500
-                    Mousemove, 939, 809 ; Crest Reward
-                    Click
-                    Sleep, 1000
-                    Click
-                    Sleep, 1000
-                    Click
-                    Mousemove, 943, 1038 ; Ok
-                    Sleep, 1000
-                    Click
-                    GuiControl, Status:, StatusText, Status: Restarting
-                    con2 := False
-                    con1 := True
-                    break
-                }
-            }
-            else if (counter < MaxLoops) {
-                PixelGetColor, color, 929, 450, RGB ; Start Message
-                if (color = 0x282828) { 
-                    counter++
-                    rounds++
-                    GuiControl, Status:, Rounds, Rounds: %rounds%
-                    Sleep 2500
-                }
-                PixelGetColor, color, 874, 391, RGB 
-                if (color = 0x215173) {
-                    isRunning := false
-                    SetTimer, CheckReadyButton, Off
-                    GuiControl, Status:, StatusText, Status: Stopped
-                    MsgBox, 0x40000, Process Terminated, The process has been terminated as you have been disconnected.
-                    ExitApp
-                }
-                else {
+        if (!con1) {
+            Loop {
+                if (counter+1 = MaxLoops) {
                     PixelGetColor, color, 1108, 635 ; Cancel
                     if (color = 0x2D312D) {
-                        GuiControl, Status:, StatusText, Status: RoundFailed
                         Mousemove, 1108, 635 ; Cancel
                         Click
                         Sleep, 1000
                         Mousemove, 937, 672 ; Restart
                         Click
                         fail++
+                        counter--
+                        rounds--
                         GuiControl, Status:, Failed, Times Failed: %fail%
-                    }
+                        }
                     else {
-                        GuiControl, Status:, StatusText, Status: Looping
                         mousemove 939, 809 ; Crest Reward
                         sleep 750
                         click
-
-                        PixelGetColor, color, 874, 391, RGB 
-                        if (color = 0x215173) {
-                            isRunning := false
-                            SetTimer, CheckReadyButton, Off
-                            GuiControl, Status:, StatusText, Status: Stopped
-                            MsgBox, 0x40000, Process Terminated, The process has been terminated as you have a 4+ drop or crest burst.
-                            ExitApp
+                    }
+                    PixelGetColor, color, 1134, 1021, RGB ; End Battle
+                    if (color = 0x2A96FF) {
+                        Sleep, 750
+                        Mousemove, 1134, 1021 ; End Battle 
+                        Click   
+                        Sleep, 1500
+                        Mousemove, 939, 809 ; Crest Reward
+                        Click
+                        Sleep, 1000
+                        Click
+                        Sleep, 1000
+                        Click
+                        Mousemove, 943, 1038 ; Ok
+                        Sleep, 1000
+                        Click
+                        GuiControl, Status:, StatusText, Status: Restarting
+                        con2 := False
+                        con1 := True
+                        break
+                    }
+                }
+                else if (counter < MaxLoops) {
+                    PixelGetColor, color, 939, 410, RGB ; Start
+                    if (color = 0x7DC9D0) { 
+                        counter++
+                        rounds++
+                        GuiControl, Status:, Rounds, Rounds: %rounds%
+                        Sleep 4500
                         }
+                else {
+                    PixelGetColor, color, 1108, 635 ; Cancel
+                    if (color = 0x2D312D) {
+                        Mousemove, 1108, 635 ; Cancel
+                        Click
+                        Sleep, 1000
+                        Mousemove, 937, 672 ; Restart
+                        Click
+                        fail++
+                        counter--
+                        rounds--
+                        GuiControl, Status:, Failed, Times Failed: %fail%
+                        }
+                    Else {
+                        mousemove 939, 809 ; Crest Reward
+                        sleep 750
+                        click
+                PixelGetColor, color, 874, 391, RGB 
+                if (color = 0x215173) {
+                    isRunning := false
+                    SetTimer, CheckReadyButton, Off
+                    GuiControl, Status:, StatusText, Status: Stopped
+                    MsgBox, 0x40000, Process Terminated, The process has been terminated as you have a 4+ drop or crest burst.
+                    ExitApp
+                }
+
+                }
                     }
                 }
             }
         }
     }
     if (!con2) {
-        GuiControl, Status:, StatusText, Status: Restarting
-        Sleep 5500
+        Sleep 7000
         Mousemove, 934, 615 ; Select Stage
         Click
-        Sleep 1500
+        Sleep 3000
         Mousemove, 802, 482 ; Single player
         Click
-        Sleep 1500
+        Sleep 2500
         Mousemove, 947, 921 ; Battle
         Click
-        Sleep 750
+        Sleep 2500
         Click
         loops++
         GuiControl, Status:, Loops, Times Looped: %loops%
         counter = 0
         con1 := False
         con2 := True
+        }
     }
-    GuiControl, Status:, StatusText, Status: Looping
-}
+
+
+
 
 ; Exit the script when the GUI is closed
 GuiClose:
