@@ -6,13 +6,13 @@ Functions Available:
 
 ~~Auto-Helpers~~
 
-~~Auto-Loop after Max (50/100)~~
+Auto Compendium Farm (Cross-Battle)
 
 Auto-Multi Ready
 
 ~~Auto-Battle Host (only works on full party 4/4 players)~~
 
-~~Auto-Reroll (maybe idk)~~
+Auto Crest
 
 How to use:
 
