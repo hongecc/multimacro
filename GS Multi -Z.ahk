@@ -172,7 +172,7 @@
             condition2 := True
         }
 
-        if (condition3) {
+        if (condition2) {
             GuiControl, Status:, StatusText, Status: ready
             PixelGetColor, color, 1270, 1367, RGB ; Ready Button
             if (color = 0xEF5518) {
@@ -182,7 +182,7 @@
             Sleep, 100
             condition4 := False
         }
-
+    }
         if (!condition4) {
             PixelGetColor, color, 1280, 292, RGB ; Results
             if (color = 0xADAAAD) { ; Results Color
