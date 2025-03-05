@@ -152,6 +152,7 @@ return
 ; Non-Host mode function
 condition1 := False
 condition2 := False
+condition3 := False
 condition4 := True
 
 NonHostModeFunction() { 
@@ -170,19 +171,20 @@ NonHostModeFunction() {
         Click 995, 1131 ; food
         Sleep, 500
         condition2 := True
+        condition3 := True
     }
 
-    if (condition2) {
+    if (condition3) {
         GuiControl, Status:, StatusText, Status: ready
-        PixelGetColor, color, 1287, 1391, RGB ; Ready Button
-        if (color = 0xD6DBF7) {
-            GuiControl, Status:, StatusText, Status: waitingforresult
-            Sleep, 2000
-            Click 1287, 1391
-            Sleep, 100
-            condition4 := False
-            }
-        }
+        Sleep 2000
+        GuiControl, Status:, StatusText, Status: waitingforresult
+        Sleep, 2000
+        Click 1287, 1391
+        Sleep, 100
+        condition4 := False
+        condition3 := False
+    }
+
     if (!condition4) {
         PixelGetColor, color, 1280, 292, RGB ; Results
         if (color = 0xADAAAD) { ; Results Color
@@ -196,8 +198,8 @@ NonHostModeFunction() {
                     Sleep, 800
                     Click 1268, 1159 ; Next Button
                     Sleep, 100
-                    condition3 := False
-                    condition4 := True
+                    condition3 := True
+                    condition4 := True  a
                     rounds++
                     GuiControl, Status:, rounds, Rounds: %rounds%
                     break
