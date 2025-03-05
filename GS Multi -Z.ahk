@@ -154,7 +154,7 @@
     condition2 := False
     condition4 := True
 
-    NonHostModeFunction() { 
+      NonHostModeFunction() { 
         global
         if (!condition1) {
             PixelGetColor, color, 1111, 921, RGB
@@ -181,6 +181,7 @@
             Click 1270, 1367
             Sleep, 100
             condition4 := False
+            condition2 := False
         }
     }
         if (!condition4) {
@@ -196,9 +197,10 @@
                         Sleep, 800
                         Click 1268, 1159 ; Next Button
                         Sleep, 100
-                        condition4 := True
+                        condition2 := True
                         rounds++
                         GuiControl, Status:, rounds, Rounds: %rounds%
+                        condition4 := True
                         break
                     }
                 }
@@ -211,7 +213,7 @@
     con1 := False
     con2 := True
 
-    AutoCompendium() {
+    AutoCompendium() {  
         global
         {
         PixelGetColor, color, 885, 493, RGB ; reSult
@@ -384,6 +386,7 @@
             con2 := True
             }
         }
+    
     Exit the script when the GUI is closed
     GuiClose:
     ExitApp
