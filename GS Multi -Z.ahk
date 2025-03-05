@@ -152,7 +152,6 @@ return
 ; Non-Host mode function
 condition1 := False
 condition2 := False
-condition3 := False
 condition4 := True
 
 NonHostModeFunction() { 
@@ -173,7 +172,7 @@ NonHostModeFunction() {
         condition2 := True
     }
 
-    if (!condition3 && condition2) {
+    if (condition2) {
         GuiControl, Status:, StatusText, Status: ready
         PixelGetColor, color, 1287, 1391, RGB ; Ready Button
         if (color = 0xD6DBF7) {
@@ -181,7 +180,6 @@ NonHostModeFunction() {
             Sleep, 2000
             Click 1287, 1391
             Sleep, 100
-            condition3 := True
             condition4 := False
             }
         }
