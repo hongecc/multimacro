@@ -152,6 +152,7 @@
     ; Non-Host mode function
     condition1 := False
     condition2 := False
+    condition5 := False
     condition4 := True
 
       NonHostModeFunction() { 
@@ -169,10 +170,11 @@
             GuiControl, Status:, StatusText, Status: food
             Click 995, 1131 ; food
             Sleep, 500
+            condition5 := True
             condition2 := True
         }
 
-        if (condition2) {
+        if (condition5) {
             GuiControl, Status:, StatusText, Status: ready
             PixelGetColor, color, 1270, 1367, RGB ; Ready Button
             if (color = 0xEF5518) {
@@ -181,7 +183,7 @@
             Click 1270, 1367
             Sleep, 100
             condition4 := False
-            condition2 := False
+            condition5 := False
         }
     }
         if (!condition4) {
@@ -197,7 +199,7 @@
                         Sleep, 800
                         Click 1268, 1159 ; Next Button
                         Sleep, 100
-                        condition2 := True
+                        condition5 := True
                         rounds++
                         GuiControl, Status:, rounds, Rounds: %rounds%
                         condition4 := True
